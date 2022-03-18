@@ -1,0 +1,10 @@
+black==22.1.0
+ujson==5.1.0
+pymorphy2==0.9.1
+pymorphy2-dicts-ru==2.4.417127.4579844
+pip-tools
+pyTelegramBotAPI==4.4.0
+python-dotenv==0.19.2
+celery>5
+Flask==2.0.3
+gunicorn==20.1.0
