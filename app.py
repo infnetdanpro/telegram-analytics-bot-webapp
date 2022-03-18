@@ -31,10 +31,10 @@ def get_message():
     return "!", 200
 
 
-@app.route("/", methods=["GET"])
+@app.route("/test", methods=["GET"])
 def index():
     return (
-        '<center><h1><a href="http://t.me/chat_stats_analytics_bot">http://t.me/chat_stats_analytics_bot</a></h1></center>',
+        '<center><h1><a href="https://t.me/chat_stats_analytics_bot">https://t.me/chat_stats_analytics_bot</a></h1></center>',
         200,
     )
 
