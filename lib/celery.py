@@ -1,10 +1,10 @@
 import celery
 
-celery_app = celery.Celery("celery_app")
-celery_app.config_from_object("celeryconfig")
+app = celery.Celery("celery_app")
+app.config_from_object("celeryconfig")
 
 
-@celery_app.task
+@app.task
 def run_task(message):
     from config import config
 
