@@ -1,2 +1,2 @@
 web: gunicorn app:app
-celeryd: celery -A celery worker -E --loglevel=INFO
+worket: celery -A tasks worker -E --loglevel=INFO
