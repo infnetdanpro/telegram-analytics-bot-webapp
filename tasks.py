@@ -7,6 +7,9 @@ app.config_from_object("celeryconfig")
 
 
 @app.task
-def run_task(bot, message):
-    print('CELERY!!!!!!!!!!')
-    bot.reply_to(message, "Some data are ready!")
+def run_task(reply_to: int):
+    import telebot
+    from config import config
+
+    bot = telebot.TeleBot(config["TELEGRAM_TOKEN"])
+    bot.send_message(message, "Some data are ready!")

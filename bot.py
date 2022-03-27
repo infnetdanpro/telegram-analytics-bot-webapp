@@ -19,9 +19,8 @@ def handle_docs(message):
     # todo: get the document
     # todo: parse the document
     # todo: initialize the stats class
-    task = run_task.delay(bot, message)
-    print('777', message.from_user)
-    print('888', task)
+    reply_to = message.from_user.id
+    task = run_task.delay(reply_to)
     bot.reply_to(message, "asdasd, " + message.from_user.first_name)
 
 
