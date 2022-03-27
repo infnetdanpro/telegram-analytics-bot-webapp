@@ -1,4 +1,6 @@
 import celery
+import celeryconfig
+
 
 app = celery.Celery("celery_app")
 app.config_from_object("celeryconfig")

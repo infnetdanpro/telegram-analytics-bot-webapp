@@ -15,14 +15,14 @@ def start(message):
 
 
 @bot.message_handler(content_types=["document"])
-def handle_docs_audio(message):
+def handle_docs(message):
     # todo: get the document
     # todo: parse the document
     # todo: initialize the stats class
-    task = run_task.delay(bot, message)
-    print('777', message.from_user)
-    print('888', task)
-    bot.reply_to(message, '11111')
+    # task = run_task.delay(bot, message)
+    # print('777', message.from_user)
+    # print('888', task)
+    bot.reply_to(message, "asdasd, " + message.from_user.first_name)
 
 
 @app.route("/" + TOKEN, methods=["POST"])
