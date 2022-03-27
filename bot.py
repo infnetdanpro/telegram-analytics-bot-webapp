@@ -3,7 +3,7 @@ from flask import request
 
 from app import app, bot
 from config import config
-# from tasks import run_task
+from tasks import run_task
 
 
 TOKEN = config["TELEGRAM_TOKEN"]
@@ -19,9 +19,9 @@ def handle_docs(message):
     # todo: get the document
     # todo: parse the document
     # todo: initialize the stats class
-    # task = run_task.delay(bot, message)
-    # print('777', message.from_user)
-    # print('888', task)
+    task = run_task.delay(bot, message)
+    print('777', message.from_user)
+    print('888', task)
     bot.reply_to(message, "asdasd, " + message.from_user.first_name)
 
 
