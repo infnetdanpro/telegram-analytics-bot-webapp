@@ -21,7 +21,7 @@ def handle_docs(message):
     # todo: initialize the stats class
     reply_to = message.from_user.id
     file_id = message.document.file_id
-    message.document.download()
+    message.document.download(file_path='/tmp/')
     task = run_task.delay(reply_to, file_id)
     bot.reply_to(message, "asdasd, " + message.from_user.first_name)
 
