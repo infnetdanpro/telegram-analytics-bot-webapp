@@ -12,4 +12,4 @@ def run_task(reply_to: int):
     from config import config
 
     bot = telebot.TeleBot(config["TELEGRAM_TOKEN"])
-    bot.send_message(message, "Some data are ready!")
+    bot.send_message(reply_to, "Some data are ready!")
