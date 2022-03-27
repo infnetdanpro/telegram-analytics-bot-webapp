@@ -1,5 +1,8 @@
 from app import app, bot
+from config import config
 from lib.celery import run_task
+
+TOKEN = config["TOKEN"]
 
 
 @bot.message_handler(commands=["start"])
