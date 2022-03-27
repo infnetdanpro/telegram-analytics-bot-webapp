@@ -3,3 +3,4 @@ venv
 venv2
 .json
 .env
+.DS_Store

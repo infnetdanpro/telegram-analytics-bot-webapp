@@ -225,11 +225,7 @@ class JSONLogParser:
         authors_items = []
         for from_id, values in authors_replied_messages.items():
             authors_items.append(
-                {
-                    "from_id": from_id,
-                    "count": len(values),
-                    "from": users[from_id]
-                }
+                {"from_id": from_id, "count": len(values), "from": users[from_id]}
             )
         authors_items = sorted(authors_items, key=lambda x: -x["count"])
         self.users_replies_stats: List[Dict] = authors_items
