@@ -1,6 +1,6 @@
 import telebot
 
-from flask import Flask, request
+from flask import Flask
 
 from config import config
 
