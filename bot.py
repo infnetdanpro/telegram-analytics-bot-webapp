@@ -19,10 +19,10 @@ def handle_docs_audio(message):
     # todo: get the document
     # todo: parse the document
     # todo: initialize the stats class
-    task = run_task.delay(message)
+    task = run_task.delay(bot, message)
     print('777', message.from_user)
     print('888', task)
-    bot.reply_to(message, str(task))
+    bot.reply_to(message, '11111')
 
 
 @app.route("/" + TOKEN, methods=["POST"])
