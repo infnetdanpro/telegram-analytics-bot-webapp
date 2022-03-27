@@ -5,8 +5,7 @@ from flask import Flask, request
 from config import config
 
 
-TOKEN = config["TELEGRAM_TOKEN"]
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(config["TELEGRAM_TOKEN"])
 app = Flask(__name__)
 
 import bot
