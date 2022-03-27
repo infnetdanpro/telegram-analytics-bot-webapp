@@ -16,14 +16,15 @@ def start(message):
 
 @bot.message_handler(content_types=["document"])
 def handle_docs(message):
-    # todo: get the document
-    # todo: parse the document
-    # todo: initialize the stats class
-    reply_to = message.from_user.id
-    file_id = message.document.file_id
-    message.document.download(file_path='/tmp/')
-    task = run_task.delay(reply_to, file_id)
-    bot.reply_to(message, "asdasd, " + message.from_user.first_name)
+    file_name = message.document.file_name
+    file_id_info = bot.get_file(message.document.file_id)
+    downloaded_file = bot.download_file(file_id_info.file_path)
+
+    # in memory
+    file = json.loads(downloaded_file.decode('utf-8'))
+
+    task = run_task.delay(reply_to=message.from_user.id, data_dict=file)
+    bot.reply_to(message, "Your data is analyzing. Bot will message you then the result will be ready.")
 
 
 @app.route("/" + TOKEN, methods=["POST"])
@@ -47,3 +48,9 @@ def webhook():
         '<center><h1><a href="https://t.me/chat_stats_analytics_bot">https://t.me/chat_stats_analytics_bot</a></h1></center>',
         200,
     )
+
+
+
+if __name__ == '__main__':
+    bot.infinity_polling()
+

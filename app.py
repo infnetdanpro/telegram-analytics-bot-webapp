@@ -8,7 +8,7 @@ from config import config
 bot = telebot.TeleBot(config["TELEGRAM_TOKEN"])
 app = Flask(__name__)
 
-import bot
+import views
 
 
 if __name__ == "__main__":

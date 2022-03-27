@@ -12,8 +12,10 @@ app.config_from_object("celeryconfig")
 bot = telebot.TeleBot(config["TELEGRAM_TOKEN"]) 
 
 
-@app.task
-def run_task(self, reply_to: int, file_id: str):
-    data = JSONLogParser(file_name=file_id)
+@app.task(bind=True)
+def run_task(self, reply_to: int, data_dict: dict):
+    task_id = self.request.id
+    data = JSONLogParser(data_dict=data_dict)
     data.get_most_replied_user()
-    bot.send_message(reply_to, str(data.users_replies_stats))
+    # todo: generate data for html
+    bot.send_message(reply_to, task_id)

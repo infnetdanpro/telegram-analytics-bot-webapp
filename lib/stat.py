@@ -6,16 +6,21 @@ import pymorphy2
 import ujson as json
 
 
-class EmptyFilenameException(Exception):
+class JSONLogParserEmptyData(Exception):
     pass
 
 
 class JSONLogParser:
-    def __init__(self, file_name: AnyStr):
-        if not file_name:
-            raise EmptyFilenameException("You should to put correct filename!")
+    def __init__(self, file_name: AnyStr = None, data_dict: dict = None):
+        if not any([file_name, data_dict]):
+            raise JSONLogParserEmptyData('You should put data into class: file_name or data_dict')
         self.filename: AnyStr = file_name
-        self.data: Dict = JSONLogParser.parse(file_name)
+        if self.filename:
+            # parse file from disk
+            self.data: Dict = JSONLogParser.parse(file_name)
+        else:
+            # get data from dict
+            self.data = data_dict
         self.name: Union[AnyStr, None] = self.data.get("name")
         self.type: Union[AnyStr, None] = self.data.get("type")
         self.id: Union[int, None] = self.data.get("id")
