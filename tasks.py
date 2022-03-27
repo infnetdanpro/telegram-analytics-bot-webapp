@@ -16,4 +16,4 @@ bot = telebot.TeleBot(config["TELEGRAM_TOKEN"])
 def run_task(self, reply_to: int, file_id: str):
     data = JSONLogParser(file_name=file_name)
     data.get_most_replied_user()
-    bot.send_message(reply_to, data.users_replies_stats)
+    bot.send_message(reply_to, str(data.users_replies_stats))
