@@ -1,2 +1,2 @@
 web: gunicorn app:app
-worker: celery -A tasks worker -E --loglevel=INFO
+worker: celery -A tasks worker --concurrency 1 -E --loglevel=INFO
