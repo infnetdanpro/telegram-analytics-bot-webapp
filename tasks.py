@@ -24,39 +24,40 @@ env = Environment(
 )
 
 def prepare_template_data(report):
-        hashtags_frequency = {
-            k: v
-            for k, v in sorted(
-                report["hashtags_frequency"].items(), key=lambda item: -item[1]
-            )
-        }
-        hashtags_frequency = {
-            "chart_labels": [f"'{e}'" for e in hashtags_frequency.keys()],
-            "chart_values": [e for e in hashtags_frequency.values()],
-        }
+    hashtags_frequency = {
+        k: v
+        for k, v in sorted(
+            report["hashtags_frequency"].items(), key=lambda item: -item[1]
+        )
+    }
+    hashtags_frequency = {
+        "chart_labels": [f"'{e}'" for e in hashtags_frequency.keys()],
+        "chart_values": [e for e in hashtags_frequency.values()],
+    }
 
-        word_stats = {
-            k: v
-            for k, v in sorted(report["word_stats"].items(), key=lambda item: -item[1])
-            if v > 1
-        }
-        word_stats = {
-            "chart_labels": [f"'{e}'" for e in word_stats.keys()][:250],
-            "chart_values": [e for e in word_stats.values()][:250],
-        }
+    word_stats = {
+        k: v
+        for k, v in sorted(report["word_stats"].items(), key=lambda item: -item[1])
+        if v > 1
+    }
+    word_stats = {
+        "chart_labels": [f"'{e}'" for e in word_stats.keys()][:250],
+        "chart_values": [e for e in word_stats.values()][:250],
+    }
 
-        most_replies = {
-            k: v
-            for k, v in sorted(report["most_replies"].items(), key=lambda item: -item[1])
-            if v >= 1
-        }
-        most_replies = {
-            "chart_labels": [f"'{e}'" for e in most_replies.keys()][:250],
-            "chart_values": [e for e in most_replies.values()][:250],
-        }
+    most_replies = {
+        k: v
+        for k, v in sorted(report["most_replies"].items(), key=lambda item: -item[1])
+        if v >= 1
+    }
+    most_replies = {
+        "chart_labels": [f"'{e}'" for e in most_replies.keys()][:250],
+        "chart_values": [e for e in most_replies.values()][:250],
+    }
 
-        unique_hashtags = report["unique_hashtags"]
-    return  {
+    unique_hashtags = report["unique_hashtags"]
+
+    data = {
         "hashtags_frequency": {
             "data": hashtags_frequency,
             "type": "pie",
@@ -78,6 +79,8 @@ def prepare_template_data(report):
             "title": "Most replied users (top 250)",
         },
     }
+    
+    return data
 
 
 @app.task
