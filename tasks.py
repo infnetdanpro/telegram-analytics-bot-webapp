@@ -1,5 +1,5 @@
 import os
-from io import BytesIO
+from io import StringIO
 
 from jinja2 import Environment, FileSystemLoader, ChoiceLoader, select_autoescape
 
@@ -93,7 +93,7 @@ def run_task(reply_to: int, data_dict: dict):
     chart_data = prepare_template_data(report=report)
     template_data = template.render(chart_data=chart_data, chat_name=data.name)
 
-    obj = BytesIO(template_data)
+    obj = StringIO(template_data)
     obj.name = f'{data.id}.html'
     bot.send_document(chat_id=reply_to, data=obj, caption='your file')
 
