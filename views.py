@@ -21,10 +21,13 @@ def handle_docs(message):
     downloaded_file = bot.download_file(file_id_info.file_path)
 
     # in memory
-    file = json.loads(downloaded_file.decode('utf-8'))
+    file = json.loads(downloaded_file.decode("utf-8"))
 
     task = run_task.delay(reply_to=message.from_user.id, data_dict=file)
-    bot.reply_to(message, "Your data is analyzing. Bot will message you then the result will be ready.")
+    bot.reply_to(
+        message,
+        "Your data is analyzing. Bot will message you then the result will be ready.",
+    )
 
 
 @app.route("/" + TOKEN, methods=["POST"])
@@ -50,7 +53,5 @@ def webhook():
     )
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     bot.infinity_polling()
-
