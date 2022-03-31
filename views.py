@@ -11,7 +11,7 @@ TOKEN = config["TELEGRAM_TOKEN"]
 
 @bot.message_handler(commands=["start"])
 def start(message):
-    bot.reply_to(message, f"Hello, {config.get('')}" + message.from_user.first_name)
+    bot.reply_to(message, "Hello, upload your json file with chat history.")
 
 
 @bot.message_handler(content_types=["document"])
