@@ -9,6 +9,8 @@ from tasks import run_task
 bot = telebot.TeleBot(config["TELEGRAM_TOKEN"])
 app = Flask(__name__)
 
+TOKEN = config["TELEGRAM_TOKEN"]
+
 
 @bot.message_handler(commands=["start"])
 def start(message):
