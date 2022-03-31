@@ -21,6 +21,10 @@ def start(message):
 def handle_docs(message):
     file_name = message.document.file_name
     file_id_info = bot.get_file(message.document.file_id)
+    # DDEBUG
+    bot.reply_to(message, file_id_info)
+    
+
     downloaded_file = bot.download_file(file_id_info.file_path)
 
     # in memory
