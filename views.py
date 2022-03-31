@@ -11,7 +11,7 @@ TOKEN = config["TELEGRAM_TOKEN"]
 
 @bot.message_handler(commands=["start"])
 def start(message):
-    bot.reply_to(message, f"Hello, {config.get('REDIS_URL')}" + message.from_user.first_name)
+    bot.reply_to(message, f"Hello, {config.get('')}" + message.from_user.first_name)
 
 
 @bot.message_handler(content_types=["document"])
@@ -22,6 +22,7 @@ def handle_docs(message):
 
     # in memory
     file = json.loads(downloaded_file.decode("utf-8"))
+    print(file)
 
     task = run_task.delay(reply_to=message.from_user.id, data_dict=file)
     bot.reply_to(
