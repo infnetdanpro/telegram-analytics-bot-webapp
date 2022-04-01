@@ -95,6 +95,6 @@ def run_task(reply_to: int, data_dict: dict):
 
     obj = StringIO(template_data)
     obj.name = f'{data.id}.html'
-    bot.send_document(chat_id=reply_to, document=obj, caption='your stats result file')
+    # bot.send_document(chat_id=reply_to, document=obj, caption='your stats result file')
 
-    # bot.send_document(chat_id=reply_to, data=template_data, visible_file_name=path)
+    bot.send_message(chat_id=reply_to, 'Hello!!!')
