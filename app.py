@@ -1,11 +1,10 @@
-import telebot
+import json
 
+import telebot
 from flask import Flask, request
 
 from config import config
 from tasks import run_task
-import json
-
 
 bot = telebot.TeleBot(config["TELEGRAM_TOKEN"])
 app = Flask(__name__)
@@ -53,10 +52,7 @@ def webhook():
     bot.remove_webhook()
     bot.set_webhook(url="https://tg-chat-analytics.herokuapp.com/" + TOKEN)
     return (
-        '<center><h1><a href="https://t.me/chat_stats_analytics_bot">https://t.me/chat_stats_analytics_bot</a></h1></center>',
+        '<center><h1><a href="https://t.me/chat_stats_analytics_bot">'
+        'https://t.me/chat_stats_analytics_bot</a></h1></center>',
         200,
     )
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

@@ -5,7 +5,6 @@ from app import app, bot
 from config import config
 from tasks import run_task
 
-
 TOKEN = config["TELEGRAM_TOKEN"]
 
 

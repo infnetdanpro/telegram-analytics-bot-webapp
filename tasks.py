@@ -1,15 +1,12 @@
 import os
 from io import StringIO
 
-from jinja2 import Environment, FileSystemLoader, ChoiceLoader, select_autoescape
-
 import celery
-import celeryconfig
 import telebot
+from jinja2 import Environment, FileSystemLoader, ChoiceLoader, select_autoescape
 
 from config import config
 from lib.stat import JSONLogParser
-
 
 app = celery.Celery("celery_app")
 app.config_from_object("celeryconfig")
