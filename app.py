@@ -4,6 +4,7 @@ from flask import Flask, request
 
 from config import config
 from tasks import run_task
+import json
 
 
 bot = telebot.TeleBot(config["TELEGRAM_TOKEN"])
@@ -19,18 +20,19 @@ def start(message):
 
 @bot.message_handler(content_types=["document"])
 def handle_docs(message):
-    file_name = message.document.file_name
+    # file_name = message.document.file_name
     file_id_info = bot.get_file(message.document.file_id)
-    downloaded_file = bot.download_file(file_id_info.file_path)
+    downloaded_file: bytes = bot.download_file(file_id_info.file_path)
 
     # in memory
     file = json.loads(downloaded_file.decode("utf-8"))
-
-    task = run_task.delay(reply_to=message.from_user.id, data_dict=file)
     bot.reply_to(
         message,
         "Your data is analyzing. Bot will message you then the result will be ready.",
     )
+
+    # Put data in Celery App
+    run_task.delay(reply_to=message.from_user.id, data_dict=file)
 
 
 @app.route("/" + TOKEN, methods=["POST"])
