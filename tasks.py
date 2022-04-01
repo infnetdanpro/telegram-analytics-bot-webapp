@@ -20,6 +20,7 @@ env = Environment(
     autoescape=select_autoescape(),
 )
 
+
 def prepare_template_data(report):
     hashtags_frequency = {
         k: v
@@ -76,7 +77,7 @@ def prepare_template_data(report):
             "title": "Most replied users (top 250)",
         },
     }
-    
+
     return data
 
 
@@ -85,13 +86,13 @@ def run_task(reply_to: int, data_dict: dict):
     data = JSONLogParser(data_dict=data_dict)
     report = data.generate_stats()
     template = env.get_template("report.html")
-    
+
     # prepare data and render template
     chart_data = prepare_template_data(report=report)
     template_data = template.render(chart_data=chart_data, chat_name=data.name)
 
     obj = StringIO(template_data)
-    obj.name = f'{data.id}.html'
-    bot.send_document(chat_id=reply_to, document=obj, caption='your stats result file')
+    obj.name = f"{data.id}.html"
+    bot.send_document(chat_id=reply_to, document=obj, caption="your stats result file")
 
     # bot.send_message(reply_to, 'Hello!!!')
