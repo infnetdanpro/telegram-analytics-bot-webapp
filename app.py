@@ -49,7 +49,7 @@ def echo():
 @app.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url="https://telegram-analytics-bot.herokuapp.com/" + TOKEN)
+    bot.set_webhook(url="https://tg-chat-analytics.herokuapp.com/" + TOKEN)
     return (
         '<center><h1><a href="https://t.me/chat_stats_analytics_bot">https://t.me/chat_stats_analytics_bot</a></h1></center>',
         200,
