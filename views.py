@@ -3,24 +3,30 @@ from flask import request
 
 from app import app, bot
 from config import config
-from lib.celery import run_task
-
+from tasks import run_task
 
 TOKEN = config["TELEGRAM_TOKEN"]
 
 
 @bot.message_handler(commands=["start"])
 def start(message):
-    bot.reply_to(message, "Hello, " + message.from_user.first_name)
+    bot.reply_to(message, f"Hello, " + message.from_user.first_name)
 
 
 @bot.message_handler(content_types=["document"])
-def handle_docs_audio(message):
-    # todo: get the document
-    # todo: parse the document
-    # todo: initialize the stats class
-    task = run_task.delay(message)
-    bot.reply_to(message, str(task))
+def handle_docs(message):
+    file_name = message.document.file_name
+    file_id_info = bot.get_file(message.document.file_id)
+    downloaded_file = bot.download_file(file_id_info.file_path)
+
+    # in memory
+    file = json.loads(downloaded_file.decode("utf-8"))
+
+    task = run_task.delay(reply_to=message.from_user.id, data_dict=file)
+    bot.reply_to(
+        message,
+        "Your data is analyzing. Bot will message you then the result will be ready.",
+    )
 
 
 @app.route("/" + TOKEN, methods=["POST"])
@@ -44,3 +50,7 @@ def webhook():
         '<center><h1><a href="https://t.me/chat_stats_analytics_bot">https://t.me/chat_stats_analytics_bot</a></h1></center>',
         200,
     )
+
+
+if __name__ == "__main__":
+    bot.infinity_polling()
