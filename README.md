@@ -19,4 +19,4 @@ Use the feedback page: [Google Forms](https://forms.gle/oDhqB5GET79VFiat9)
 
 
 ## How to support me?
-Donate links: (donate)[https://www.donationalerts.com/r/infnetdanpro] or BTC: `bc1qdq8nghl0z3tttlwyt3tuer0pe6z382u2kxt47c`
+[Donate](https://www.donationalerts.com/r/infnetdanpro) or BTC: `bc1qdq8nghl0z3tttlwyt3tuer0pe6z382u2kxt47c`
